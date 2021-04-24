@@ -1,0 +1,33 @@
+.player__container {
+  justify-content: center;
+  min-height: 20vh;
+  //   background-color: rgb(243, 217, 198);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Rubik', sans-serif;
+}
+
+.player__timer {
+  //   background-color: rgb(216, 171, 180);
+  width: 50%;
+  display: flex;
+  input {
+    width: 100%;
+    padding: 1rem 0;
+  }
+  p {
+    padding: 1rem;
+  }
+}
+
+.player__icon {
+  justify-content: space-between;
+  display: flex;
+  width: 30%;
+  padding: 1.5rem;
+  svg {
+    cursor: pointer;
+  }
+}
