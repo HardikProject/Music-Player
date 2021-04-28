@@ -1,15 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { IoMdArrowRoundForward, IoMdArrowRoundBack } from 'react-icons/io';
+import '../styles/Player.scss';
 
-function Player({ currentSong, isPlay, setISPlay }) {
-  const [time, setTime] = useState({
-    currentTime: 0,
-    duration: 0,
-  });
-
-  const audioRef = useRef(null);
-
+function Player({ isPlay, setISPlay, audioRef, time, setTime,songs,currentSong,setCurrentSong }) {
   const playAudioHandler = () => {
     if (isPlay) {
       audioRef.current.pause();
@@ -18,14 +12,7 @@ function Player({ currentSong, isPlay, setISPlay }) {
       audioRef.current.play();
       setISPlay(!isPlay);
     }
-  };
-
-  const timeUpdateHamdler = (e) => {
-    setTime({
-      ...time,
-      currentTime: e.target.currentTime,
-      duration: e.target.duration,
-    });
+    console.log(audioRef.current);
   };
 
   const formateTime = (timeInSecond) => {
@@ -39,6 +26,19 @@ function Player({ currentSong, isPlay, setISPlay }) {
     setTime({ ...time, currentTime: e.target.value });
   };
 
+  const setSongHandler = (direction) => {
+    const currentIndex = songs.findIndex(song=> song.id===currentSong.id)
+    if (direction==='forward') {
+      setCurrentSong(songs[(currentIndex +1) % songs.length])
+    }else{
+      if(currentIndex===0){
+        setCurrentSong(songs[songs.length - 1])
+        return
+      }
+      setCurrentSong(songs[(currentIndex -1) % songs.length])
+    }
+  };
+
   return (
     <div className="player__container ">
       <div className="player__timer ">
@@ -46,7 +46,7 @@ function Player({ currentSong, isPlay, setISPlay }) {
         <input
           type="range"
           min={0}
-          max={time.duration}
+          max={time.duration || 0}
           value={time.currentTime}
           onChange={dragInputHandler}
         />
@@ -54,22 +54,21 @@ function Player({ currentSong, isPlay, setISPlay }) {
       </div>
 
       <div className="player__icon ">
-        <IoMdArrowRoundBack size="1.5em" />
+        <IoMdArrowRoundBack
+          size="1.5em"
+          onClick={() => setSongHandler('Backward')}
+        />
         {isPlay ? (
           <FaPause size="1.5em" onClick={playAudioHandler} />
         ) : (
           <FaPlay size="1.5em" onClick={playAudioHandler} />
         )}
 
-        <IoMdArrowRoundForward size="1.5em" />
+        <IoMdArrowRoundForward
+          size="1.5em"
+          onClick={() => setSongHandler('forward')}
+        />
       </div>
-
-      <audio
-        onTimeUpdate={timeUpdateHamdler}
-        ref={audioRef}
-        src={currentSong.audio}
-        onLoadedMetadata={timeUpdateHamdler}
-      ></audio>
     </div>
   );
 }

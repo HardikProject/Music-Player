@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/SongDetail.scss'
 
 function SongDetail({ currentSong }) {
   return (

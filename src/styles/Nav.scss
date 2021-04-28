@@ -1,0 +1,24 @@
+.Nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 50%;
+  min-height: 10vh;
+  align-items: center;
+  font-weight: bold;
+  button {
+    background: none;
+    padding: 0.2rem 1rem;
+    display: flex;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, 0.867);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    &:hover {
+      background:rgb(97, 96, 96);
+      border: 2px solid rgb(0, 0, 0);
+      color: white;
+    }
+  }
+  
+}

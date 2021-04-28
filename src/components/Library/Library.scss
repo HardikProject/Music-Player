@@ -15,6 +15,14 @@
   }
   overflow: scroll;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all linear 0.7s;
+}
+
+.activeLibrary{
+  transform: translateX(0);
+  opacity: 1;
 }
 
 // LibrarySong CSS
@@ -22,7 +30,7 @@
 .librarySong {
   border: 2px solid #ccc;
   border-radius: 0.2rem;
-  background-color: #f1f1f1;
+  background-color: #f8f6f6;
   margin:0.5rem;
   display: flex;
   align-items: center;
@@ -39,8 +47,21 @@
     font-size: 0.9rem;
     color: rgb(92, 92, 92);
   }
+  &:hover{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    transform: translateY(-0.3rem);
+    transition: all ease 0.5s;
+  }
 }
 
 .librarySong__detail {
   padding-left: 1rem;
+}
+
+.selected{
+  background: linear-gradient(45deg,#cc02cc, #00fa9a);
+    color: white;
+    h4{
+      color: rgb(233, 233, 233);
+    }
 }
