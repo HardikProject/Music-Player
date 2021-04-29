@@ -78,3 +78,16 @@
   }
   
 }
+
+@media screen and (max-width: 640px) {
+  .libraryList{
+    width: 100%;
+    h2{
+      text-align: left;
+      margin-top: 1.3rem;
+      padding: 1rem ;
+      font-size: 1.5rem;
+    }
+  }
+  
+}

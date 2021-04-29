@@ -29,6 +29,7 @@ function Player({
       }
     });
     setSongs(newSongs);
+    // console.log('From UseEffect')
   }, [currentSong]);
 
   const playAudioHandler = () => {
