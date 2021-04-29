@@ -13,7 +13,14 @@
   width: 0.5rem;
 }
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg,#cc02cc, #00fa9a);
+  background: linear-gradient(45deg, #cc02cc, #00fa9a);
   border-radius: 1rem;
 }
 
+.App {
+  transition: all 0.5s ease;
+}
+
+.library__active {
+  margin-left: 20%;
+}

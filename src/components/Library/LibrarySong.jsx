@@ -1,5 +1,4 @@
 import React from 'react';
-import { playAudio } from '../../feature';
 import './Library.scss';
 
 function LibrarySong({
@@ -10,12 +9,12 @@ function LibrarySong({
   isPlay,
   setSongs,
 }) {
-  const selectSongHandler = () => {
+  const selectSongHandler = async () => {
     const selectedSong = songs.filter(
       (singleSong) => singleSong.id === song.id, //this will return array
     );
-    setCurrentSong(selectedSong[0]);
-    
+    await setCurrentSong(selectedSong[0]);
+
     const newSongs = songs.map((singleSong) => {
       if (singleSong.id === selectedSong[0].id) {
         return {
@@ -31,7 +30,7 @@ function LibrarySong({
     });
     setSongs(newSongs);
     // console.log('newSongs:', newSongs)
-    playAudio(audioRef, isPlay);
+    if (isPlay) audioRef.current.play();
   };
 
   return (

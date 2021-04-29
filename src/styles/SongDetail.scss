@@ -18,3 +18,11 @@
   }
   font-family: 'Rubik', sans-serif;
 }
+
+@media screen and (max-width: 768px) {
+  .song__container {
+    img {
+      width: 55%;
+    }
+  }
+}

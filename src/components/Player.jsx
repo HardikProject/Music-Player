@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { FaPlay, FaPause } from 'react-icons/fa';
 import { IoMdArrowRoundForward, IoMdArrowRoundBack } from 'react-icons/io';
 import '../styles/Player.scss';
-import { playAudio } from '../feature';
 
 function Player({
   isPlay,
@@ -54,19 +53,19 @@ function Player({
     setTime({ ...time, currentTime: e.target.value });
   };
 
-  const setSongHandler = (direction) => {
+  const setSongHandler = async (direction) => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === 'forward') {
-      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     } else {
       if (currentIndex === 0) {
-        setCurrentSong(songs[songs.length - 1]);
+        await setCurrentSong(songs[songs.length - 1]);
         playAudio(audioRef, isPlay);
         return;
       }
-      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
-    playAudio(audioRef, isPlay);
+    if (isPlay) audioRef.current.play();
   };
 
   const timeStyle = { transform: `translateX(${time.timeRatio}%)` };
@@ -77,7 +76,10 @@ function Player({
     <div className="player__container ">
       <div className="player__timer ">
         <p>{formateTime(time.currentTime)}</p>
-        <div style={{background:`linear-gradient(to-right,#cc02cc, #00fa9a)`}} className="track">
+        <div
+          style={{ background: `linear-gradient(to right,#cc02cc, #00fa9a)` }}
+          className="track"
+        >
           <input
             type="range"
             min={0}
