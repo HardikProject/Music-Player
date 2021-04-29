@@ -34,5 +34,8 @@
   }
   button{
     z-index: 1;
+    &:focus{
+      outline: none;
+    }
   }
 }
