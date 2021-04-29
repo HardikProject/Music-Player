@@ -16,18 +16,22 @@ function App() {
   const [time, setTime] = useState({
     currentTime: 0,
     duration: 0,
+    timeRatio:0
   });
 
-  const [libraryActive,setLibraryActive] = useState(false);
+  const [libraryActive, setLibraryActive] = useState(false);
 
   const audioRef = useRef(null);
 
   const timeUpdateHamdler = (e) => {
+    
     setTime({
       ...time,
       currentTime: e.target.currentTime,
       duration: e.target.duration,
+      timeRatio:Math.round((time.currentTime / time.duration) *100)
     });
+    // console.log('timeRatio:', time.timeRatio)
   };
 
   return (
@@ -43,9 +47,10 @@ function App() {
         setISPlay={setISPlay}
         setCurrentSong={setCurrentSong}
         songs={songs}
+        setSongs={setSongs}
       />
       <LibraryList
-      isPlay={isPlay}
+        isPlay={isPlay}
         audioRef={audioRef}
         setISPlay={setISPlay}
         songs={songs}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { playAudio } from '../../feature';
 import './Library.scss';
 
 function LibrarySong({
@@ -14,26 +15,23 @@ function LibrarySong({
       (singleSong) => singleSong.id === song.id, //this will return array
     );
     setCurrentSong(selectedSong[0]);
-    if (isPlay) {
-      const playPromise = audioRef.current.play();
-      // console.log(typeof playPromise)
-      if (playPromise !== undefined) {
-        playPromise.then((audio) => audioRef.current.play());
+    
+    const newSongs = songs.map((singleSong) => {
+      if (singleSong.id === selectedSong[0].id) {
+        return {
+          ...singleSong,
+          active: true,
+        };
+      } else {
+        return {
+          ...singleSong,
+          active: false,
+        };
       }
-    }
-    const newSongs = songs.map(singleSong =>{
-      if (singleSong.id===selectedSong[0].id) {
-        return{
-          ...singleSong,active:true
-        }
-      }else{
-        return{
-          ...singleSong,active:false
-        }
-      }
-    })
-    setSongs(newSongs)
-    console.log('newSongs:', newSongs)
+    });
+    setSongs(newSongs);
+    // console.log('newSongs:', newSongs)
+    playAudio(audioRef, isPlay);
   };
 
   return (
