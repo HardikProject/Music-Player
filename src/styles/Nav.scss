@@ -7,8 +7,8 @@
   align-items: center;
   font-weight: bold;
   button {
-    background: rgb(97, 96, 96);
-    padding: 0.2rem 1rem;
+    background:rgb(230, 230, 230);
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
     border: none;
@@ -16,10 +16,7 @@
     font-size: 1.2rem;
     transition: all 0.3s ease;
     border-radius: 0.3rem;
-    &:hover {
-      background:rgb(230, 230, 230);
-      color: black;
-    }
+    
   }
   
 }
